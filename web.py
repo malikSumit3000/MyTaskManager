@@ -9,7 +9,7 @@ def add_todos():
     new_todo = st.session_state["new_todo"]
     for todo in todos:
         if new_todo == todo:
-            st.experimental_rerun()
+            break
     todos.append(new_todo + '\n')
     functions.write_todos(todos)
 
