@@ -2,18 +2,18 @@ import streamlit as st
 
 import functions
 
-st.title('Task Manager')
-st.subheader('Add or Complete your tasks')
-st.text('Increase your productivity with my task manager')
-
 todos = functions.get_todos()
 
 
 def add_todos():
-    new_todo = st.session_state["new_todo"]
-    todos.append(new_todo + '\n')
+    todo = st.session_state["new_todo"]
+    todos.append(todo + '\n')
     functions.write_todos(todos)
 
+
+st.title('Task Manager')
+st.subheader('Add or Complete your tasks')
+st.text('Increase your productivity with my task manager')
 
 for index, todo in enumerate(todos):
     checked = st.checkbox(todo, key=todo)
@@ -23,4 +23,4 @@ for index, todo in enumerate(todos):
         del st.session_state[todo]
         st.experimental_rerun()
 
-st.text_input(label="", placeholder='Add todo here...', on_change=add_todos, key="new_todo")
+st.text_input(label="", placeholder='Add todo here...', on_change=add_todos, key='new_todo')
